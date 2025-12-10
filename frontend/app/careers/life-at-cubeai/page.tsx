@@ -11,21 +11,21 @@ export default function LifeAtCubeAI() {
       icon: TrendingUp,
       content:
         "At CubeAI, you don't just work — you level up. From day one, you get real projects, real ownership, and real opportunities to showcase your talent. Whether you're an intern or a full-time employee, you're encouraged to explore new ideas, learn modern technologies, and sharpen your skills through continuous guidance and hands-on challenges.\n\nHere, your learning curve is your superpower — and we help you climb it.",
-      imagePlaceholder: "/assets/life-grow.png",
+      imagePlaceholder: "/assets/carrers/life-grow.png",
     },
     {
       title: "A Culture Built on Collaboration & Support",
       icon: Users,
       content:
         "We believe the best ideas come from open minds and a positive environment. At CubeAI, everyone is approachable — teammates, mentors, and leaders. We work together, celebrate together, and solve problems as a team.\n\nInterns feel included from day one, and employees feel valued every step of the way.\n\nNo ego. No barriers. Just teamwork, trust, and kindness.",
-      imagePlaceholder: "/assets/life-culture.png",
+      imagePlaceholder: "/assets/carrers/life-culture.png",
     },
     {
       title: "Create Impact With Purposeful Innovation",
       icon: Lightbulb,
       content:
         "CubeAI is a place where your work matters. You'll build AI-powered tools, automation systems, and intelligent solutions used by real businesses. Every line of code, design, or idea you contribute helps shape the future of digital transformation.\n\nFor interns, it's a chance to build a portfolio that stands out.\nFor employees, it's a career with real influence.\n\nYou don't just build features here — you build impact.",
-      imagePlaceholder: "/assets/life-impact.png",
+      imagePlaceholder: "/assets/carrers/life-impact.png",
     },
   ];
 
@@ -102,12 +102,12 @@ export default function LifeAtCubeAI() {
                       </div>
                     </div>
                     {/* Uncomment when images are ready */}
-                    {/* <Image
+                    <Image
                       src={section.imagePlaceholder}
                       alt={section.title}
                       fill
                       className="object-cover"
-                    /> */}
+                    />
                   </div>
                 </div>
 

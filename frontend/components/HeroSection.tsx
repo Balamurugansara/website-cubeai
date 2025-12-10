@@ -2,10 +2,28 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Shield, Zap, Users } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function HeroSection() {
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  
+  const rotatingTexts = [
+    "Faster Growth",
+    "Smarter Decisions",
+    "Better Performance",
+    "Higher Productivity"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTextIndex((prev) => (prev + 1) % rotatingTexts.length);
+    }, 3000); // Change every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -58,10 +76,26 @@ export default function HeroSection() {
             {/* Main Headline */}
             <motion.h1
               variants={itemVariants}
-              className="text-6xl md:text-7xl lg:text-5xl font-black text-gray-900 mb-6 leading-tight tracking-tight"
+              className="text-6xl md:text-7xl lg:text-5xl font-black text-gray-900 leading-tight tracking-tight"
               style={{ fontFamily: "'Cinzel', serif", fontWeight: 700, letterSpacing: '0.01em' }}
             >
-              Smarter Systems for Faster Growth
+              Smarter Systems for{" "}
+              <br className="block md:hidden" />
+              <span className="inline-block mx-2 relative text-5xl lg:text-4xl overflow-hidden" style={{ minWidth: '100%', width: 'auto', height: '1.3em', verticalAlign: 'baseline' }}>
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={currentTextIndex}
+                    initial={{ y: "100%" }}
+                    animate={{ y: 0 }}
+                    exit={{ y: "-100%" }}
+                    transition={{ duration: 0.2, ease: "easeInOut" }}
+                    className="block bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent font-black"
+                    style={{ fontFamily: "'Cinzel', serif", fontWeight: 700 }}
+                  >
+                    {rotatingTexts[currentTextIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
             </motion.h1>
 
             {/* Sub-headline */}

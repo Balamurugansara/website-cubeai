@@ -11,7 +11,7 @@ const CoreValuesPage = () => {
       title: 'Innovation',
       description:
         'We push boundaries to invent smarter, faster, and more efficient AI solutions. Innovation fuels our culture — from rapid experimentation to continuous improvement.',
-      image: '/assets/innovation.jpg',
+      image: '/assets/our-core-values/Innovation.png',
       layout: 'text-image',
     },
     {
@@ -20,7 +20,7 @@ const CoreValuesPage = () => {
       title: 'Goals',
       description:
         'We set purposeful and measurable goals that align with client needs and long-term business growth. Every milestone brings us closer to meaningful impact.',
-      image: '/assets/goals.jpg',
+      image: '/assets/our-core-values/Goals.png',
       layout: 'image-text',
     },
     {
@@ -29,7 +29,7 @@ const CoreValuesPage = () => {
       title: 'Teamwork',
       description:
         'Collaboration is at our core. We believe that diverse ideas, open communication, and shared ownership lead to better solutions and stronger results.',
-      image: '/assets/teamwork.jpg',
+      image: '/assets/our-core-values/Teamwork.png',
       layout: 'text-image',
     },
     {
@@ -38,7 +38,7 @@ const CoreValuesPage = () => {
       title: 'Integrity',
       description:
         'We uphold transparency, honesty, and ethical standards in everything we do. Integrity builds trust — the foundation of every relationship.',
-      image: '/assets/integrity.jpg',
+      image: '/assets/our-core-values/Integrity.png',
       layout: 'image-text',
     },
     {
@@ -47,7 +47,7 @@ const CoreValuesPage = () => {
       title: 'Commitment',
       description:
         'We stay dedicated from start to finish. Our team consistently delivers high-quality work, meets deadlines, and supports clients long after launch.',
-      image: '/assets/commitment.jpg',
+      image: '/assets/our-core-values/Commitment.png',
       layout: 'text-image',
     },
     {
@@ -56,7 +56,7 @@ const CoreValuesPage = () => {
       title: 'Customers',
       description:
         'Our clients are partners. We listen, understand, and build tailored solutions that solve real challenges. Customer success drives our innovation.',
-      image: '/assets/customers.jpg',
+      image: '/assets/our-core-values/Customers.png',
       layout: 'image-text',
     },
     {
@@ -65,7 +65,7 @@ const CoreValuesPage = () => {
       title: 'Responsibility',
       description:
         'We build AI responsibly — with secure data practices, sustainable development, and ethical design. Every decision reflects our commitment to positive impact.',
-      image: '/assets/responsibility.jpg',
+      image: '/assets/our-core-values/Responsibility.png',
       layout: 'text-image',
     },
   ];
@@ -108,17 +108,18 @@ const CoreValuesPage = () => {
                 <div className="h-1 w-20 bg-gradient-to-r from-cyan-500 to-blue-400 rounded-full"></div>
               </div>
 
-              {/* Image Placeholder */}
+              {/* Image Section */}
               <div className="flex-1">
-                <div className="relative w-full aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden border border-gray-300 shadow-lg hover:shadow-blue-200/40 transition-shadow duration-300">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <p className="text-gray-500 text-lg mb-2">Image Placeholder</p>
-                      <p className="text-gray-400 text-sm">{value.title} - {value.image}</p>
-                    </div>
-                  </div>
+                <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-gray-300 shadow-lg hover:shadow-blue-200/40 transition-shadow duration-300">
+                  <Image
+                    src={value.image}
+                    alt={value.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
                   {/* Decorative gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/60 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent"></div>
                 </div>
               </div>
             </div>
