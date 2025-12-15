@@ -4,6 +4,7 @@ import FuturisticCarousel from "@/components/FuturisticCarousel";
 import WhyChooseCubeAI from "@/components/WhyChooseCubeAI";
 import OurProcess from "@/components/OurProcess";
 import ImpactResults from "@/components/ImpactResults";
+import ContactCTA from "@/components/ContactCTA";
 // import StatsStrips from "@/components/StatsStrips";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       <WhyChooseCubeAI />
       <OurProcess />
       <ImpactResults />
+      <ContactCTA />
       {/* <StatsStrips /> */}
     </main>
   );

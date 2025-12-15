@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 const caseStudies = [
   {
     icon: "🤖",
@@ -45,25 +49,133 @@ const testimonial = {
   author: "CTO, Global Retail Brand",
 };
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { y: 30, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const highlightVariants = {
+  hidden: { opacity: 0, x: -10 },
+  visible: (custom: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: { delay: custom * 0.1, duration: 0.5 },
+  }),
+};
+
+const iconVariants = {
+  initial: { scale: 1, rotate: 0 },
+  hover: {
+    scale: 1.25,
+    rotate: 15,
+    transition: { duration: 0.3 },
+  },
+};
+
+const testimonialVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay: 0.4 },
+  },
+};
+
+const gradients = [
+  "from-blue-500/10 to-cyan-500/10",
+  "from-purple-500/10 to-pink-500/10",
+  "from-green-500/10 to-emerald-500/10",
+];
+
 export default function ImpactResults() {
   return (
-    <section className="bg-white py-20 px-4">
+    <section className="bg-gradient-to-b from-white via-blue-50/20 to-white py-20 px-4">
       <div className="max-w-6xl mx-auto text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Impact & Results</h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent mb-4"
+        >
+          Impact & Results
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="text-gray-600 text-lg max-w-2xl mx-auto"
+        >
+          See how our AI solutions transform businesses
+        </motion.p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={containerVariants}
+        className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12"
+      >
         {caseStudies.map((cs, idx) => (
-          <div key={idx} className="bg-gray-50 rounded-2xl shadow border border-gray-100 p-8 flex flex-col items-center text-center">
-            <span className="text-4xl mb-4">{cs.icon}</span>
-            <h3 className="text-lg font-semibold text-blue-700 mb-2">{cs.title}</h3>
-            <ul className="text-gray-600 text-base mb-2 space-y-1">
+          <motion.div
+            key={idx}
+            variants={cardVariants}
+            whileHover={{
+              y: -8,
+              boxShadow: "0 25px 50px rgba(59, 130, 246, 0.15)",
+            }}
+            className={`group bg-gradient-to-br ${gradients[idx % 3]} bg-white rounded-2xl shadow-md border border-blue-100/50 p-8 flex flex-col items-center text-center hover:border-blue-200 transition-all duration-300`}
+          >
+            <motion.span
+              variants={iconVariants}
+              initial="initial"
+              whileHover="hover"
+              className="text-5xl mb-4 block"
+            >
+              {cs.icon}
+            </motion.span>
+
+            <h3 className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4 group-hover:scale-105 transition-transform duration-300">
+              {cs.title}
+            </h3>
+
+            <ul className="text-gray-600 text-sm space-y-2">
               {cs.highlights.map((h, i) => (
-                <li key={i}>• {h}</li>
+                <motion.li
+                  key={i}
+                  custom={i}
+                  variants={highlightVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="flex items-start gap-2"
+                >
+                  <span className="text-blue-500 font-bold mt-1 flex-shrink-0">✓</span>
+                  <span>{h}</span>
+                </motion.li>
               ))}
             </ul>
-          </div>
+
+            <div className="mt-6 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent w-0 group-hover:w-full transition-all duration-500 opacity-0 group-hover:opacity-100" />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
       {/* <div className="flex flex-wrap justify-center items-center gap-6 mb-12">
         <span className="text-gray-500 text-sm mr-4">Trusted by forward-thinking businesses…</span>
         {clientLogos.map((logo, idx) => (
@@ -72,10 +184,33 @@ export default function ImpactResults() {
           </div>
         ))}
       </div> */}
-      <div className="max-w-2xl mx-auto bg-blue-50 border-l-4 border-blue-400 p-6 rounded-xl text-center">
-        <p className="text-lg text-gray-700 italic mb-2">“{testimonial.quote}”</p>
-        <div className="text-blue-700 font-semibold">{testimonial.author}</div>
-      </div>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        variants={testimonialVariants}
+        viewport={{ once: true }}
+        className="max-w-2xl mx-auto bg-gradient-to-br from-blue-50 to-purple-50 border-l-4 border-blue-400 p-8 rounded-xl text-center shadow-md hover:shadow-lg transition-shadow duration-300"
+      >
+        <div className="flex justify-center gap-1 mb-4 text-3xl text-yellow-400">★★★★★</div>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="text-lg text-gray-800 italic mb-4 font-light"
+        >
+          &ldquo;{testimonial.quote}&rdquo;
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="text-blue-700 font-semibold text-lg"
+        >
+          {testimonial.author}
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

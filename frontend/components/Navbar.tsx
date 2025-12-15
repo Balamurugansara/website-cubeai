@@ -82,7 +82,7 @@ export default function Navbar() {
     "Apply Now": Send,
     "Company Overview": Building2,
     "Our Vision & Mission": Target,
-    "Leadership Team": Users,
+    // "Leadership Team": Users,
     "Why Choose Us": Star,
     "Our Process": Workflow,
   };

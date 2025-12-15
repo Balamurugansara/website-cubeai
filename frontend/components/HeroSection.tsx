@@ -37,23 +37,6 @@ export default function HeroSection() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
   };
 
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.8, y: 40 },
-    visible: { 
-      opacity: 1, 
-      scale: 1, 
-      y: 0, 
-      transition: { duration: 0.8, delay: 0.4 } 
-    },
-  };
-
-  const floatingVariants = {
-    animate: {
-      y: [0, -20, 0],
-      transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-    },
-  };
-
   const trustItems = [
     { icon: Shield, label: "Secure" },
     { icon: Zap, label: "Scalable" },
@@ -62,17 +45,29 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className="pt-28 pb-20 px-6 lg:px-8 bg-gradient-to-b from-white to-primary-50">
+    <section className="pt-36 pb-20 px-6 lg:px-8 bg-gradient-to-b from-white to-primary-50">
       <div className="max-w-7xl mx-auto">
         {/* Main Hero Content */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+        <div className="flex flex-col items-center text-center gap-12 mb-16">
           {/* Left Side - Text Content */}
           <motion.div
-            className="flex flex-col justify-center"
+            className="flex flex-col justify-center items-center text-center"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
+            {/* Logo */}
+            <motion.div variants={itemVariants} className="mb-6">
+              <Image
+                src="/assets/logo.png"
+                alt="CubeAI logo"
+                width={160}
+                height={60}
+                priority
+                className="mx-auto h-12 w-auto"
+              />
+            </motion.div>
+
             {/* Main Headline */}
             <motion.h1
               variants={itemVariants}
@@ -101,7 +96,7 @@ export default function HeroSection() {
             {/* Sub-headline */}
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-2xl text-gray-600 mb-10 leading-relaxed font-light"
+              className="text-lg md:text-2xl text-gray-600 mb-10 leading-relaxed font-light max-w-3xl"
               style={{ fontFamily: "'Inter', 'Segoe UI', '-apple-system', sans-serif", fontWeight: 300, letterSpacing: '0.005em' }}
             >
               Transforming complex processes into intelligent workflows that accelerate productivity and unlock new revenue
@@ -110,7 +105,7 @@ export default function HeroSection() {
             {/* CTA Buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-6 items-start mb-12"
+              className="flex flex-col sm:flex-row gap-6 items-center justify-center mb-12"
             >
               <Link
                 href="/contact"
@@ -130,40 +125,6 @@ export default function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right Side - Hero Image */}
-          <motion.div
-            variants={imageVariants}
-            initial="hidden"
-            animate="visible"
-            className="flex justify-center items-center"
-          >
-            <motion.div
-              animate="animate"
-              variants={floatingVariants}
-              className="relative w-full max-w-md"
-            >
-              {/* Soft Glow Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-200/20 via-purple-200/20 to-transparent rounded-3xl blur-3xl -z-10"></div>
-
-              {/* Main Image Container */}
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/40 backdrop-blur-sm">
-                <Image
-                  src="/assets/hero-section-picture.png"
-                  alt="CubeAI Business Professional"
-                  width={600}
-                  height={600}
-                  priority
-                  className="w-full h-auto object-cover"
-                />
-                {/* Subtle overlay for depth */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent"></div>
-              </div>
-
-              {/* Floating accent elements */}
-              <div className="absolute top-10 -left-10 w-20 h-20 bg-blue-300/20 rounded-full blur-2xl"></div>
-              <div className="absolute bottom-20 -right-10 w-28 h-28 bg-purple-300/20 rounded-full blur-3xl"></div>
-            </motion.div>
-          </motion.div>
         </div>
 
         {/* Trust Strip */}

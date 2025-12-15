@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Upload, CheckCircle2, AlertCircle, FileUp, Briefcase, GraduationCap, Mail, Phone, User, FileText } from "lucide-react";
+import { submitCareerApplication } from "@/lib/api";
 
 type ApplicationType = "job" | "internship" | null;
 
@@ -131,7 +132,7 @@ export default function ApplyNow() {
     return true;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
@@ -139,27 +140,38 @@ export default function ApplyNow() {
       return;
     }
 
-    // Simulate form submission
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
+    // Submit to backend
+    const result = await submitCareerApplication({
+      name: formData.fullName,
+      email: formData.email,
+      position: formData.selectedRole,
+      coverLetter: `Application Type: ${formData.applicationType}\n\nEducation: ${formData.education}\n\nExperience: ${formData.experience}\n\nCover Letter:\n${formData.coverLetter}`,
+      resume: formData.resumeFile!,
+    });
 
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setFormData({
-        applicationType: null,
-        selectedRole: "",
-        fullName: "",
-        email: "",
-        phone: "",
-        education: "",
-        experience: "",
-        resumeFile: null,
-        portfolioFile: null,
-        coverLetter: "",
-        termsAccepted: false,
-      });
-      setSubmitted(false);
-    }, 3000);
+    if (result.success) {
+      setSubmitted(true);
+      // Reset form after 5 seconds
+      setTimeout(() => {
+        setFormData({
+          applicationType: null,
+          selectedRole: "",
+          fullName: "",
+          email: "",
+          phone: "",
+          education: "",
+          experience: "",
+          resumeFile: null,
+          portfolioFile: null,
+          coverLetter: "",
+          termsAccepted: false,
+        });
+        setSubmitted(false);
+      }, 5000);
+    } else {
+      setError(result.error || 'Failed to submit application. Please try again.');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -392,7 +404,7 @@ export default function ApplyNow() {
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          placeholder="+91 98765 43210"
+                          placeholder="+91 9486938781"
                           className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all"
                         />
                       </div>

@@ -305,10 +305,10 @@ export default function Internships() {
               Send your resume, portfolio (if applicable), and a brief introduction to:
             </p>
             <a
-              href="mailto:careers@cubeaisolutions.com"
+              href="mailto:contact@cubeaisolutions.com"
               className="inline-block text-2xl font-bold text-yellow-300 hover:text-yellow-200 transition-colors duration-200"
             >
-              📧 careers@cubeaisolutions.com
+              📧 contact@cubeaisolutions.com
             </a>
             <div className="mt-8 text-left space-y-3 max-w-xl mx-auto">
               <p className="text-blue-100">Let us know:</p>
@@ -429,7 +429,7 @@ export default function Internships() {
                 {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-gray-200">
                   <a
-                    href="mailto:careers@cubeaisolutions.com"
+                    href="mailto:contact@cubeaisolutions.com"
                     className="flex-1 py-3 px-6 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-200 text-center shadow-md hover:shadow-lg"
                   >
                     Apply Now
