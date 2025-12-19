@@ -180,7 +180,7 @@ export const articles: Article[] = [
       introduction: "Agentic AI agents are revolutionizing industries in 2025 with unprecedented autonomy, adaptability, and decision-making intelligence. Moving beyond the capabilities of traditional assistants, these agents combine generative AI creativity, AI automation tools precision, and enterprise-level governance to operate as fully integrated enterprise AI solutions. From intelligent customer engagement to autonomous industrial operations, agentic AI agents are rapidly becoming indispensable to business productivity using AI.",
       sections: [
         {
-          title: "Why Cube AI is All-In on Agentic AI",
+          title: "Why CubeAI is All-In on Agentic AI",
           content: "Our transition to Agentic AI wasn’t a trend-following move—it was a strategic pivot rooted in our mission: to create self-operating intelligent systems that scale decision-making, not just tasks.",
           subsections: [
             {
@@ -216,7 +216,7 @@ export const articles: Article[] = [
           ]
         },
         {
-          title: "What Makes Cube AI's Approach Different?",
+          title: "What Makes CubeAI's Approach Different?",
           content: "We don’t just integrate Agentic AI frameworks—we engineer goal-driven, multi-agent systems tailored to your enterprise.",
           subsections: [
             {
@@ -235,8 +235,8 @@ export const articles: Article[] = [
           ]
         },
         {
-          title: "About Cube AI Solutions",
-          content: "Cube AI Solutions is at the forefront of the Agentic AI revolution—building systems that don’t just follow instructions, but proactively make decisions, take action, and drive outcomes. We specialize in designing Agentic AI solutions powered by autonomous agents that collaborate, reason, and execute complex goals across industries.",
+          title: "About CubeAI Solutions",
+          content: "CubeAI Solutions is at the forefront of the Agentic AI revolution—building systems that don’t just follow instructions, but proactively make decisions, take action, and drive outcomes. We specialize in designing Agentic AI solutions powered by autonomous agents that collaborate, reason, and execute complex goals across industries.",
           subsections: [
             {
               title: "Our Vision",
@@ -259,7 +259,7 @@ export const articles: Article[] = [
           ]
         }
       ],
-      conclusion: "At Cube AI, we believe the future belongs to autonomous agents—not just AI tools. As we continue to evolve, we’re embedding intelligent agency into every product, service, and client solution. Whether it’s transforming industries or enabling smarter decisions, Agentic AI isn’t a feature—it’s the foundation."
+      conclusion: "At CubeAI, we believe the future belongs to autonomous agents—not just AI tools. As we continue to evolve, we’re embedding intelligent agency into every product, service, and client solution. Whether it’s transforming industries or enabling smarter decisions, Agentic AI isn’t a feature—it’s the foundation."
     },
     flowchartImage: "/assets/blogs/agentic.png",
     flowchartImageAlt: "Agentic AI flowchart for enterprise AI solutions",
@@ -472,7 +472,7 @@ export const articles: Article[] = [
     id: 'case-study-agentic-manufacturing',
     slug: 'case-study-agentic-manufacturing',
     title: 'Case Study: Agentic AI in Manufacturing',
-    excerpt: 'A leading industrial automation company in Southeast Asia partnered with Cube AI Solutions to implement Agentic AI, achieving a 28% increase in equipment effectiveness, 65% faster anomaly resolution, and near-elimination of human-related downtime through autonomous decision-making.',
+    excerpt: 'A leading industrial automation company in Southeast Asia partnered with CubeAI Solutions to implement Agentic AI, achieving a 28% increase in equipment effectiveness, 65% faster anomaly resolution, and near-elimination of human-related downtime through autonomous decision-making.',
     category: 'Case Studies',
     image: '/assets/blogs/case.png',
     imageAlt: 'Agentic AI for manufacturing enterprise AI solutions',
@@ -495,15 +495,15 @@ export const articles: Article[] = [
       avatar: generateAvatar('David Kim')
     },
     content: {
-      introduction: "A leading industrial automation company in Southeast Asia, specializing in heavy machinery and assembly line optimization, approached Cube AI Solutions to explore intelligent automation. They had already adopted traditional AI for predictive maintenance and anomaly detection, but operational bottlenecks, decision lags, and data silos were still hurting production uptime and quality consistency. Their primary concern: while AI helped analyze data, it lacked real-time decision-making autonomy. This gap between insight and action created a need for Agentic AI systems—capable of acting on behalf of human operators across environments.",
+      introduction: "A leading industrial automation company in Southeast Asia, specializing in heavy machinery and assembly line optimization, approached CubeAI Solutions to explore intelligent automation. They had already adopted traditional AI for predictive maintenance and anomaly detection, but operational bottlenecks, decision lags, and data silos were still hurting production uptime and quality consistency. Their primary concern: while AI helped analyze data, it lacked real-time decision-making autonomy. This gap between insight and action created a need for Agentic AI systems—capable of acting on behalf of human operators across environments.",
       sections: [
         {
           title: "The Challenge: Scaling in Complexity",
           content: "Despite deploying sensor networks and predictive models, the client faced persistent downtime due to delayed response to system anomalies, poor coordination between machines, and rigid workflows that could not adapt dynamically to real-world changes. Operators had to manually validate insights from dashboards and implement interventions across shifts, increasing human error and operational fatigue. Moreover, the legacy control system could not scale with new IoT integrations or varied product configurations on the assembly line. It became evident that traditional AI pipelines lacked autonomy and contextual reasoning, leading to fragmented intelligence."
         },
         {
-          title: "Cube AI’s Agentic AI Approach",
-          content: "We introduced a fully agentic solution using Cube AI’s proprietary multi-agent platform, integrating sensor networks, LLM-driven task reasoning, autonomous decision engines, and real-time feedback loops.",
+          title: "CubeAI’s Agentic AI Approach",
+          content: "We introduced a fully agentic solution using CubeAI’s proprietary multi-agent platform, integrating sensor networks, LLM-driven task reasoning, autonomous decision engines, and real-time feedback loops.",
           subsections: [
             {
               title: "Distributed Agent Architecture",
@@ -540,10 +540,10 @@ export const articles: Article[] = [
         },
         {
           title: "Future Outlook",
-          content: "The client is now expanding the Cube Agentic AI framework across multiple plants in Asia and Eastern Europe. Phase two will include supply chain integration agents, connecting factory operations with procurement systems, logistics scheduling, and demand forecasting models. Additionally, Cube AI is collaborating with the client's engineering team to build custom agent personalities using industry-aligned ontologies. These will allow the agents to communicate in domain-specific language and collaborate more seamlessly with human supervisors and engineers."
+          content: "The client is now expanding the Cube Agentic AI framework across multiple plants in Asia and Eastern Europe. Phase two will include supply chain integration agents, connecting factory operations with procurement systems, logistics scheduling, and demand forecasting models. Additionally, CubeAI is collaborating with the client's engineering team to build custom agent personalities using industry-aligned ontologies. These will allow the agents to communicate in domain-specific language and collaborate more seamlessly with human supervisors and engineers."
         }
       ],
-      conclusion: "This case demonstrates how Agentic AI doesn’t just support decisions—it makes them. By embedding intelligence and autonomy at every layer of industrial operations, Cube AI transformed a traditional AI-augmented factory into a self-optimizing, self-explaining ecosystem. This is the new frontier of enterprise intelligence—not dashboards, but dynamic action. Cube AI is proud to lead the way in bringing autonomous AI agents into mission-critical industrial systems, giving businesses a future-ready edge in a hyper-competitive world."
+      conclusion: "This case demonstrates how Agentic AI doesn’t just support decisions—it makes them. By embedding intelligence and autonomy at every layer of industrial operations, CubeAI transformed a traditional AI-augmented factory into a self-optimizing, self-explaining ecosystem. This is the new frontier of enterprise intelligence—not dashboards, but dynamic action. CubeAI is proud to lead the way in bringing autonomous AI agents into mission-critical industrial systems, giving businesses a future-ready edge in a hyper-competitive world."
     },
     flowchartImage: "/assets/blogs/casestudy.webp",
     flowchartImageAlt: "Agentic AI manufacturing flowchart for business productivity",
@@ -608,13 +608,13 @@ export const articles: Article[] = [
             },
             {
               title: "Action-Oriented Intelligence",
-              content: "Analytics is no longer a handoff. Cube AI agents interpret insight and execute a resolution—like triggering marketing campaigns, adjusting staffing levels, or placing reorders."
+              content: "Analytics is no longer a handoff. CubeAI agents interpret insight and execute a resolution—like triggering marketing campaigns, adjusting staffing levels, or placing reorders."
             }
           ]
         },
         {
-          title: "Use Cases at Cube AI Solutions",
-          content: "At Cube AI, we are deploying Agentic AI analytics for clients across industries:",
+          title: "Use Cases at CubeAI Solutions",
+          content: "At CubeAI, we are deploying Agentic AI analytics for clients across industries:",
           subsections: [
             {
               title: "Finance",
@@ -655,10 +655,10 @@ export const articles: Article[] = [
         },
         {
           title: "Looking Ahead: Data That Thinks and Acts",
-          content: "By 2025, enterprises will demand more than visibility—they will demand resolutions. Agentic AI delivers just that: autonomous agents that not only know what’s wrong but know what to do. Cube AI Solutions is pioneering this evolution, helping businesses build self-adaptive intelligence layers that shorten decision cycles and reduce operational friction."
+          content: "By 2025, enterprises will demand more than visibility—they will demand resolutions. Agentic AI delivers just that: autonomous agents that not only know what’s wrong but know what to do. CubeAI Solutions is pioneering this evolution, helping businesses build self-adaptive intelligence layers that shorten decision cycles and reduce operational friction."
         }
       ],
-      conclusion: "The future of data analytics is autonomous, intelligent, and action-oriented. With Agentic AI, Cube AI Solutions is redefining how enterprises leverage data—not just to understand the world, but to act on it in real time. By embedding autonomous agents into analytics, we’re enabling businesses to move faster, smarter, and with greater precision."
+      conclusion: "The future of data analytics is autonomous, intelligent, and action-oriented. With Agentic AI, CubeAI Solutions is redefining how enterprises leverage data—not just to understand the world, but to act on it in real time. By embedding autonomous agents into analytics, we’re enabling businesses to move faster, smarter, and with greater precision."
     },
     flowchartImage: "/assets/blogs/danalysis.webp",
     flowchartImageAlt: "Data analytics flowchart for agentic AI solutions",

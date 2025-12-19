@@ -286,11 +286,11 @@ export default function Navbar() {
           <div className="flex items-center space-x-2 sm:space-x-4 ml-auto lg:ml-0">
             {/* CTA Button - Hide on mobile, show on tablet and up */}
             <Link
-              href="/contact"
+              href="/talk-to-expert"
               className="hidden sm:block px-3 sm:px-5 lg:px-6 py-2 sm:py-2.5 bg-blue-600 text-white font-semibold text-xs sm:text-sm rounded-lg hover:bg-blue-700 transition duration-200 shadow-md hover:shadow-lg"
             >
-              <span className="hidden md:inline">Get Support</span>
-              <span className="md:hidden">Contact</span>
+              <span className="hidden md:inline">Talk to Expert</span>
+              <span className="md:hidden">Expert</span>
             </Link>
 
             {/* Mobile Menu Button */}
@@ -471,11 +471,11 @@ export default function Navbar() {
                 {/* Mobile CTA Button */}
                 <div className="sm:hidden pt-2 border-t border-gray-100">
                   <Link
-                    href="/contact"
+                    href="/talk-to-expert"
                     onClick={closeMobileMenu}
                     className="block w-full px-4 py-2 bg-blue-600 text-white font-semibold text-sm rounded-lg hover:bg-blue-700 transition duration-200 text-center"
                   >
-                    Get Support
+                    Talk to Expert
                   </Link>
                 </div>
               </div>

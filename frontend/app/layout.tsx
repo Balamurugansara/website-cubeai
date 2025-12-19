@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SocialMediaLinks from "@/components/sections/SocialMediaLinks";
 
 export const metadata: Metadata = {
   title: "CubeAI - Intelligent Digital Systems",
@@ -22,6 +23,7 @@ export default function RootLayout({
       </head>
       <body>
         <Navbar />
+        <SocialMediaLinks />
         {children}
         <Footer />
       </body>
