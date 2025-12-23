@@ -27,34 +27,122 @@ import {
   Target,
   Users,
   Star,
+  Mic,
+  Globe,
+  Database,
+  Layers,
+  Cpu, // For IoT/Cubebotics
+  Eye, // For VisionAI
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
+// Types for Menu Items
+interface MenuItem {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  path: string;
+}
+
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Desktop Dropdown States
   const [servicesDropdown, setServicesDropdown] = useState(false);
+  const [productsDropdown, setProductsDropdown] = useState(false);
   const [resourcesDropdown, setResourcesDropdown] = useState(false);
   const [careersDropdown, setCareersDropdown] = useState(false);
   const [aboutDropdown, setAboutDropdown] = useState(false);
+
+  // Mobile Accordion States
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const [mobileCareersOpen, setMobileCareersOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
 
-  const servicesMenu = [
-    "AI Automation & Voice Agents",
-    "Custom Software Development",
-    "CRM & ERP Solutions",
-    "Cloud & DevOps Services",
-    "Data Analytics & Business Intelligence",
-    "Web & Mobile App Development",
-    "Cybersecurity Solutions",
+  // --- Data Definitions ---
+
+  const servicesData: MenuItem[] = [
+    {
+      title: "AIMA",
+      description: "Artificial Intelligence, Machine Learning & Agent",
+      icon: Bot,
+      path: "/services/aima",
+    },
+    {
+      title: "AIDA",
+      description: "Artificial Intelligence & Data Analysis",
+      icon: BarChart4,
+      path: "/services/aida",
+    },
+    {
+      title: "VisionAI",
+      description: "AI Solutions",
+      icon: Eye,
+      path: "/services/vision-ai",
+    },
+    {
+      title: "CyTI",
+      description: "Cyber Tech Innovation",
+      icon: ShieldCheck,
+      path: "/services/cyti",
+    },
+    {
+      title: "Cubebotics",
+      description: "Embedded Systems & IoT",
+      icon: Cpu,
+      path: "/services/cubebotics",
+    },
+    {
+      title: "DCE",
+      description: "Data & Cloud Engineering",
+      icon: Database,
+      path: "/services/dce",
+    },
+    {
+      title: "Tech Solution",
+      description: "Future Technology & Services",
+      icon: Code2,
+      path: "/services/tech-solution",
+    },
+  ];
+
+  const productsData: MenuItem[] = [
+    {
+      title: "iSpeak AI Voice Agent",
+      description: "Next-generation voice AI for support.",
+      icon: Mic,
+      path: "/products/ispeak-ai-voice-agent",
+    },
+    {
+      title: "Andromeda CRM",
+      description: "Powerful CRM for sales productivity.",
+      icon: Users,
+      path: "/products/andromeda-crm",
+    },
+    {
+      title: "Orion ERP",
+      description: "Complete optimize business processes.",
+      icon: Layers,
+      path: "/products/orion-erp",
+    },
+    {
+      title: "Nebula CDM",
+      description: "Customer Data Management platform.",
+      icon: Database,
+      path: "/products/nebula-cdm",
+    },
+    {
+      title: "Cosmos Orchestration",
+      description: "Orchestrate complex workflows.",
+      icon: Globe,
+      path: "/products/cosmos-orchestration",
+    },
   ];
 
   const resourcesMenu = ["Blogs", "Case Studies", "FAQs", "Guides"];
-
   const careersMenu = ["Open Positions", "Life at CubeAI", "Internships", "Apply Now"];
-
   const aboutMenu = [
     "Company Overview",
     "Our Vision & Mission",
@@ -65,29 +153,23 @@ export default function Navbar() {
   ];
 
   const iconRegistry: Record<string, LucideIcon> = {
-    "AI Automation & Voice Agents": Bot,
-    "Custom Software Development": Code2,
-    "CRM & ERP Solutions": Workflow,
-    "Cloud & DevOps Services": CloudCog,
-    "Data Analytics & Business Intelligence": BarChart4,
-    "Web & Mobile App Development": Smartphone,
-    "Cybersecurity Solutions": ShieldCheck,
-    "Blogs / Insights": PenLine,
+    "Blogs": PenLine,
     "Case Studies": Briefcase,
-    FAQs: HelpCircle,
-    "Whitepapers / Guides": FileText,
+    "FAQs": HelpCircle,
+    "Guides": FileText,
     "Open Positions": BadgeCheck,
     "Life at CubeAI": HeartHandshake,
-    Internships: GraduationCap,
+    "Internships": GraduationCap,
     "Apply Now": Send,
     "Company Overview": Building2,
     "Our Vision & Mission": Target,
-    // "Leadership Team": Users,
+    "Our Core Values": Star,
+    "Leadership Team": Users,
     "Why Choose Us": Star,
     "Our Process": Workflow,
   };
 
-  const renderItemWithIcon = (label: string) => {
+  const renderSimpleItemWithIcon = (label: string) => {
     const normalized = label.trim();
     const Icon = iconRegistry[normalized] || FileText;
     return (
@@ -100,9 +182,9 @@ export default function Navbar() {
 
   const getMenuItemPath = (item: string, section: string) => {
     const slug = item.toLowerCase()
-      .replace(/\s*&\s*/g, "-") // Replace & and surrounding spaces with single hyphen
-      .replace(/\s+/g, "-")      // Replace remaining spaces with hyphens
-      .replace(/-+/g, "-");      // Replace multiple hyphens with single hyphen
+      .replace(/\s*&\s*/g, "-")
+      .replace(/\s+/g, "-")
+      .replace(/[^\w-]+/g, "");
     return `/${section}/${slug}`;
   };
 
@@ -110,10 +192,9 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Fixed Navbar */}
-      <nav className="fixed top-0 w-full bg-white shadow-sm z-50 border-b border-gray-100">
+      <nav className="fixed top-0 w-full bg-white shadow-sm z-50 border-b border-gray-100 font-sans">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
-          {/* Left - Logo */}
+          {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
               <Image
@@ -127,9 +208,8 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Center - Navigation Links (Desktop/Laptop Only - lg: breakpoint) */}
+          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1">
-            {/* Home */}
             <Link
               href="/"
               className="px-3 py-2 text-sm text-gray-700 font-medium hover:text-blue-600 transition duration-200"
@@ -143,13 +223,13 @@ export default function Navbar() {
               onMouseEnter={() => setServicesDropdown(true)}
               onMouseLeave={() => setServicesDropdown(false)}
             >
-              <button className="px-3 py-2 text-sm text-gray-700 font-medium hover:text-blue-600 transition duration-200 flex items-center space-x-1">
-                <span>Services</span>
+              <div className="flex items-center px-3 py-2 text-sm text-gray-700 font-medium hover:text-blue-600 transition duration-200 cursor-pointer">
+                <Link href="/services">Services</Link>
                 <ChevronDown
                   size={16}
-                  className={`transition-transform duration-300 ${servicesDropdown ? "rotate-180" : ""}`}
+                  className={`ml-1 transition-transform duration-300 ${servicesDropdown ? "rotate-180" : ""}`}
                 />
-              </button>
+              </div>
               <AnimatePresence>
                 {servicesDropdown && (
                   <motion.div
@@ -157,15 +237,21 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute left-0 mt-0 w-56 bg-white rounded-lg shadow-lg border border-gray-100 py-2 z-50"
+                    className="absolute left-0 mt-0 w-80 bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-50"
                   >
-                    {servicesMenu.map((item) => (
+                    {servicesData.map((item) => (
                       <Link
-                        key={item}
-                        href={`/services/${item.toLowerCase().replace(/\s+/g, "-")}`}
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-150"
+                        key={item.title}
+                        href={item.path}
+                        className="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-150 group"
                       >
-                        {renderItemWithIcon(item)}
+                        <div className="p-1.5 bg-blue-50 rounded-lg group-hover:bg-white transition">
+                          <item.icon size={18} className="text-blue-600 shrink-0" />
+                        </div>
+                        <div>
+                          <div className="font-semibold">{item.title}</div>
+                          <div className="text-xs text-gray-500 font-normal opacity-80">{item.description}</div>
+                        </div>
                       </Link>
                     ))}
                   </motion.div>
@@ -173,7 +259,44 @@ export default function Navbar() {
               </AnimatePresence>
             </div>
 
-            {/* Resources Dropdown */}
+            {/* Products Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setProductsDropdown(true)}
+              onMouseLeave={() => setProductsDropdown(false)}
+            >
+              <div className="flex items-center px-3 py-2 text-sm text-gray-700 font-medium hover:text-blue-600 transition duration-200 cursor-pointer">
+                <Link href="/products">Products</Link>
+                <ChevronDown
+                  size={16}
+                  className={`ml-1 transition-transform duration-300 ${productsDropdown ? "rotate-180" : ""}`}
+                />
+              </div>
+              <AnimatePresence>
+                {productsDropdown && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-0 mt-0 w-72 bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-50"
+                  >
+                    {productsData.map((item) => (
+                      <Link
+                        key={item.title}
+                        href={item.path}
+                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition duration-150"
+                      >
+                        <item.icon size={18} className="text-purple-600 shrink-0" />
+                        <span>{item.title}</span>
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Resources */}
             <div
               className="relative"
               onMouseEnter={() => setResourcesDropdown(true)}
@@ -181,10 +304,7 @@ export default function Navbar() {
             >
               <button className="px-3 py-2 text-sm text-gray-700 font-medium hover:text-blue-600 transition duration-200 flex items-center space-x-1">
                 <span>Resources</span>
-                <ChevronDown
-                  size={16}
-                  className={`transition-transform duration-300 ${resourcesDropdown ? "rotate-180" : ""}`}
-                />
+                <ChevronDown size={16} className={`transition-transform duration-300 ${resourcesDropdown ? "rotate-180" : ""}`} />
               </button>
               <AnimatePresence>
                 {resourcesDropdown && (
@@ -192,16 +312,15 @@ export default function Navbar() {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
                     className="absolute left-0 mt-0 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-2 z-50"
                   >
                     {resourcesMenu.map((item) => (
                       <Link
                         key={item}
                         href={`/resources/${item.toLowerCase().replace(/\s+/g, "-")}`}
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-150"
+                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
                       >
-                        {renderItemWithIcon(item)}
+                        {renderSimpleItemWithIcon(item)}
                       </Link>
                     ))}
                   </motion.div>
@@ -209,7 +328,7 @@ export default function Navbar() {
               </AnimatePresence>
             </div>
 
-            {/* Careers Dropdown */}
+            {/* Careers */}
             <div
               className="relative"
               onMouseEnter={() => setCareersDropdown(true)}
@@ -217,10 +336,7 @@ export default function Navbar() {
             >
               <button className="px-3 py-2 text-sm text-gray-700 font-medium hover:text-blue-600 transition duration-200 flex items-center space-x-1">
                 <span>Careers</span>
-                <ChevronDown
-                  size={16}
-                  className={`transition-transform duration-300 ${careersDropdown ? "rotate-180" : ""}`}
-                />
+                <ChevronDown size={16} className={`transition-transform duration-300 ${careersDropdown ? "rotate-180" : ""}`} />
               </button>
               <AnimatePresence>
                 {careersDropdown && (
@@ -228,16 +344,15 @@ export default function Navbar() {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
                     className="absolute left-0 mt-0 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-2 z-50"
                   >
                     {careersMenu.map((item) => (
                       <Link
                         key={item}
                         href={`/careers/${item.toLowerCase().replace(/\s+/g, "-")}`}
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-150"
+                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
                       >
-                        {renderItemWithIcon(item)}
+                        {renderSimpleItemWithIcon(item)}
                       </Link>
                     ))}
                   </motion.div>
@@ -245,7 +360,7 @@ export default function Navbar() {
               </AnimatePresence>
             </div>
 
-            {/* About Dropdown */}
+            {/* About */}
             <div
               className="relative"
               onMouseEnter={() => setAboutDropdown(true)}
@@ -253,10 +368,7 @@ export default function Navbar() {
             >
               <button className="px-3 py-2 text-sm text-gray-700 font-medium hover:text-blue-600 transition duration-200 flex items-center space-x-1">
                 <span>About</span>
-                <ChevronDown
-                  size={16}
-                  className={`transition-transform duration-300 ${aboutDropdown ? "rotate-180" : ""}`}
-                />
+                <ChevronDown size={16} className={`transition-transform duration-300 ${aboutDropdown ? "rotate-180" : ""}`} />
               </button>
               <AnimatePresence>
                 {aboutDropdown && (
@@ -264,16 +376,15 @@ export default function Navbar() {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
                     className="absolute left-0 mt-0 w-56 bg-white rounded-lg shadow-lg border border-gray-100 py-2 z-50"
                   >
                     {aboutMenu.map((item) => (
                       <Link
                         key={item}
                         href={getMenuItemPath(item, "about")}
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition duration-150"
+                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
                       >
-                        {renderItemWithIcon(item)}
+                        {renderSimpleItemWithIcon(item)}
                       </Link>
                     ))}
                   </motion.div>
@@ -284,7 +395,6 @@ export default function Navbar() {
 
           {/* Right Section */}
           <div className="flex items-center space-x-2 sm:space-x-4 ml-auto lg:ml-0">
-            {/* CTA Button - Hide on mobile, show on tablet and up */}
             <Link
               href="/talk-to-expert"
               className="hidden sm:block px-3 sm:px-5 lg:px-6 py-2 sm:py-2.5 bg-blue-600 text-white font-semibold text-xs sm:text-sm rounded-lg hover:bg-blue-700 transition duration-200 shadow-md hover:shadow-lg"
@@ -293,7 +403,6 @@ export default function Navbar() {
               <span className="md:hidden">Expert</span>
             </Link>
 
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition duration-200"
@@ -304,7 +413,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile/Tablet Menu */}
+        {/* Mobile Menu */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
@@ -312,29 +421,25 @@ export default function Navbar() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="lg:hidden bg-white border-t border-gray-100 overflow-hidden"
+              className="lg:hidden bg-white border-t border-gray-100 overflow-hidden max-h-[calc(100vh-80px)] overflow-y-auto"
             >
-              <div className="px-4 py-4 space-y-2 max-h-[calc(100vh-80px)] overflow-y-auto">
-                {/* Home Link */}
+              <div className="px-4 py-4 space-y-2">
                 <Link
                   href="/"
                   onClick={closeMobileMenu}
-                  className="block px-4 py-2 text-sm text-gray-700 font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg transition duration-150"
+                  className="block px-4 py-2 text-sm text-gray-700 font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg transition"
                 >
                   Home
                 </Link>
 
-                {/* Services Accordion */}
+                {/* Mobile Services */}
                 <div className="space-y-1">
                   <button
                     onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                    className="w-full flex items-center justify-between px-4 py-2 text-sm text-gray-700 font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg transition duration-150"
+                    className="w-full flex items-center justify-between px-4 py-2 text-sm text-gray-700 font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg transition"
                   >
                     <span>Services</span>
-                    <ChevronDown
-                      size={16}
-                      className={`transition-transform duration-300 ${mobileServicesOpen ? "rotate-180" : ""}`}
-                    />
+                    <ChevronDown size={16} className={`transition-transform duration-300 ${mobileServicesOpen ? "rotate-180" : ""}`} />
                   </button>
                   <AnimatePresence>
                     {mobileServicesOpen && (
@@ -342,17 +447,24 @@ export default function Navbar() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2 }}
                         className="space-y-1 overflow-hidden"
                       >
-                        {servicesMenu.map((item) => (
+                        <Link
+                          href="/services"
+                          onClick={closeMobileMenu}
+                          className="block px-8 py-2 text-sm font-semibold text-blue-600 bg-blue-50 rounded-lg mb-1"
+                        >
+                          View All Services
+                        </Link>
+                        {servicesData.map((item) => (
                           <Link
-                            key={item}
-                            href={`/services/${item.toLowerCase().replace(/\s+/g, "-")}`}
+                            key={item.title}
+                            href={item.path}
                             onClick={closeMobileMenu}
-                            className="flex items-center gap-2 px-8 py-2 text-xs sm:text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition duration-150"
+                            className="flex items-center gap-2 px-8 py-2 text-xs sm:text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition"
                           >
-                            {renderItemWithIcon(item)}
+                            <item.icon size={16} className="text-blue-600 shrink-0" />
+                            <span>{item.title}</span>
                           </Link>
                         ))}
                       </motion.div>
@@ -360,17 +472,54 @@ export default function Navbar() {
                   </AnimatePresence>
                 </div>
 
-                {/* Resources Accordion */}
+                {/* Mobile Products */}
+                <div className="space-y-1">
+                  <button
+                    onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                    className="w-full flex items-center justify-between px-4 py-2 text-sm text-gray-700 font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg transition"
+                  >
+                    <span>Products</span>
+                    <ChevronDown size={16} className={`transition-transform duration-300 ${mobileProductsOpen ? "rotate-180" : ""}`} />
+                  </button>
+                  <AnimatePresence>
+                    {mobileProductsOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="space-y-1 overflow-hidden"
+                      >
+                        <Link
+                          href="/products"
+                          onClick={closeMobileMenu}
+                          className="block px-8 py-2 text-sm font-semibold text-purple-600 bg-purple-50 rounded-lg mb-1"
+                        >
+                          View All Products
+                        </Link>
+                        {productsData.map((item) => (
+                          <Link
+                            key={item.title}
+                            href={item.path}
+                            onClick={closeMobileMenu}
+                            className="flex items-center gap-2 px-8 py-2 text-xs sm:text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 rounded-lg transition"
+                          >
+                            <item.icon size={16} className="text-purple-600 shrink-0" />
+                            <span>{item.title}</span>
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Mobile Resources */}
                 <div className="space-y-1">
                   <button
                     onClick={() => setMobileResourcesOpen(!mobileResourcesOpen)}
-                    className="w-full flex items-center justify-between px-4 py-2 text-sm text-gray-700 font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg transition duration-150"
+                    className="w-full flex items-center justify-between px-4 py-2 text-sm text-gray-700 font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg transition"
                   >
                     <span>Resources</span>
-                    <ChevronDown
-                      size={16}
-                      className={`transition-transform duration-300 ${mobileResourcesOpen ? "rotate-180" : ""}`}
-                    />
+                    <ChevronDown size={16} className={`transition-transform duration-300 ${mobileResourcesOpen ? "rotate-180" : ""}`} />
                   </button>
                   <AnimatePresence>
                     {mobileResourcesOpen && (
@@ -378,7 +527,6 @@ export default function Navbar() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2 }}
                         className="space-y-1 overflow-hidden"
                       >
                         {resourcesMenu.map((item) => (
@@ -386,9 +534,9 @@ export default function Navbar() {
                             key={item}
                             href={`/resources/${item.toLowerCase().replace(/\s+/g, "-")}`}
                             onClick={closeMobileMenu}
-                            className="flex items-center gap-2 px-8 py-2 text-xs sm:text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition duration-150"
+                            className="flex items-center gap-2 px-8 py-2 text-xs sm:text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition"
                           >
-                            {renderItemWithIcon(item)}
+                            {renderSimpleItemWithIcon(item)}
                           </Link>
                         ))}
                       </motion.div>
@@ -396,17 +544,14 @@ export default function Navbar() {
                   </AnimatePresence>
                 </div>
 
-                {/* Careers Accordion */}
+                {/* Mobile Careers */}
                 <div className="space-y-1">
                   <button
                     onClick={() => setMobileCareersOpen(!mobileCareersOpen)}
-                    className="w-full flex items-center justify-between px-4 py-2 text-sm text-gray-700 font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg transition duration-150"
+                    className="w-full flex items-center justify-between px-4 py-2 text-sm text-gray-700 font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg transition"
                   >
                     <span>Careers</span>
-                    <ChevronDown
-                      size={16}
-                      className={`transition-transform duration-300 ${mobileCareersOpen ? "rotate-180" : ""}`}
-                    />
+                    <ChevronDown size={16} className={`transition-transform duration-300 ${mobileCareersOpen ? "rotate-180" : ""}`} />
                   </button>
                   <AnimatePresence>
                     {mobileCareersOpen && (
@@ -414,7 +559,6 @@ export default function Navbar() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2 }}
                         className="space-y-1 overflow-hidden"
                       >
                         {careersMenu.map((item) => (
@@ -422,9 +566,9 @@ export default function Navbar() {
                             key={item}
                             href={`/careers/${item.toLowerCase().replace(/\s+/g, "-")}`}
                             onClick={closeMobileMenu}
-                            className="flex items-center gap-2 px-8 py-2 text-xs sm:text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition duration-150"
+                            className="flex items-center gap-2 px-8 py-2 text-xs sm:text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition"
                           >
-                            {renderItemWithIcon(item)}
+                            {renderSimpleItemWithIcon(item)}
                           </Link>
                         ))}
                       </motion.div>
@@ -432,17 +576,14 @@ export default function Navbar() {
                   </AnimatePresence>
                 </div>
 
-                {/* About Accordion */}
+                {/* Mobile About */}
                 <div className="space-y-1">
                   <button
                     onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
-                    className="w-full flex items-center justify-between px-4 py-2 text-sm text-gray-700 font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg transition duration-150"
+                    className="w-full flex items-center justify-between px-4 py-2 text-sm text-gray-700 font-medium hover:bg-blue-50 hover:text-blue-600 rounded-lg transition"
                   >
                     <span>About</span>
-                    <ChevronDown
-                      size={16}
-                      className={`transition-transform duration-300 ${mobileAboutOpen ? "rotate-180" : ""}`}
-                    />
+                    <ChevronDown size={16} className={`transition-transform duration-300 ${mobileAboutOpen ? "rotate-180" : ""}`} />
                   </button>
                   <AnimatePresence>
                     {mobileAboutOpen && (
@@ -450,7 +591,6 @@ export default function Navbar() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2 }}
                         className="space-y-1 overflow-hidden"
                       >
                         {aboutMenu.map((item) => (
@@ -458,9 +598,9 @@ export default function Navbar() {
                             key={item}
                             href={getMenuItemPath(item, "about")}
                             onClick={closeMobileMenu}
-                            className="flex items-center gap-2 px-8 py-2 text-xs sm:text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition duration-150"
+                            className="flex items-center gap-2 px-8 py-2 text-xs sm:text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition"
                           >
-                            {renderItemWithIcon(item)}
+                            {renderSimpleItemWithIcon(item)}
                           </Link>
                         ))}
                       </motion.div>
@@ -468,7 +608,6 @@ export default function Navbar() {
                   </AnimatePresence>
                 </div>
 
-                {/* Mobile CTA Button */}
                 <div className="sm:hidden pt-2 border-t border-gray-100">
                   <Link
                     href="/talk-to-expert"
