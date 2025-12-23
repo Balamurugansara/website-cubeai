@@ -31,19 +31,20 @@ export default function Footer() {
   ];
 
   const servicesLinks = [
-    { label: "AI & Automation Solutions", href: "/services/ai-automation" },
-    { label: "CRM & ERP Systems", href: "/services/crm-erp" },
-    { label: "Custom Software Development", href: "/services/custom-software" },
-    { label: "Cloud & DevOps", href: "/services/cloud-devops" },
-    { label: "Data & Business Intelligence", href: "/services/data-analytics" },
-    { label: "Cybersecurity Solutions", href: "/services/cybersecurity" },
+    { label: "AIMA", href: "/services/aima" },
+    { label: "AIDA", href: "/services/aida" },
+    { label: "VisionAI", href: "/services/vision-ai" },
+    { label: "CyTI", href: "/services/cyti" },
+    { label: "Cubebotics", href: "/services/cubebotics" },
+    { label: "DCE", href: "/services/dce" },
+    { label: "Tech Solution", href: "/services/tech-solution" },
   ];
 
   const resourcesLinks = [
-    { label: "Insights", href: "/resources/insights" },
+    { label: "Blogs", href: "/resources/blogs" },
     { label: "Case Studies", href: "/resources/case-studies" },
     { label: "FAQs", href: "/resources/faqs" },
-    { label: "Whitepapers", href: "/resources/whitepapers" },
+    { label: "Guides", href: "/resources/guides" },
   ];
 
   const legalLinks = [
